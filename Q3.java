@@ -1,27 +1,36 @@
-import java.util.*;
-public class Q3 {
-
-	public static void main(String[] args)
+public class Q3 
+{
+	static int minSwap(int arr[],int n,int k)
 	{
-		 Scanner sc = new Scanner(System.in);
-		 
-	        Stack<Integer> stk = new Stack<Integer>(); 
-	        
-	        System.out.println("Enter decimal number");
-	        int num = sc.nextInt();
-	 
-	        while (num != 0)
-	        {
-	            int d = num % 2;
-	            stk.push(d);
-	            num /= 2;
-	        }        
-	        System.out.print("\nBinary equivalent = ");
-	        while (!(stk.isEmpty() ))
-	        {
-	            System.out.print(stk.pop());
-	        }
-	        System.out.println();
+		int c=0;
+		for (int i=0;i<n;++i)
+			if(arr[i]<=k)
+				++c;
+		
+		int b =1;
+		for (int i=0;i<c;++i)
+			if(arr[i]>k)
+				++b;
+		
+		int ans =b;
+		for(int i=0,j=c;j<n;++i,++j)
+		{
+			if(arr[i]>k)
+				--b;
+			
+			if(arr[j]>k)
+				++b;
+			
+			ans = Math.min(ans,b);
+		}
+		return ans;
 	}
-
+	
+	public static void main(String[] args) 
+	{
+		int arr[] = {1,3,4,18,6,17,16,7,8,14,10,12};
+		int n =arr.length;
+		int k=12;
+		System.out.println(minSwap(arr,n,k)+ "\n");
+	}
 }

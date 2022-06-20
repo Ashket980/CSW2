@@ -1,58 +1,39 @@
-import java.io.*;
 import java.util.*;
 
-public class Q6 {
-	private int V;
+public class Q6 
+{
 
-	private LinkedList<Integer> adj[];
+	static int lel(int[] arr) 
+	{
+		int n = arr.length;
 
-	public Q6(int v) {
-		V = v;
-		adj = new LinkedList[v];
-		for (int i = 0; i < v; ++i) {
-			adj[i] = new LinkedList();
-		}
-	}
+		if (n == 1)
+			return arr[0];
 
-	void addEdge(int v, int w) {
-		adj[v].add(w);
-	}
+		int l = -1, s = -1;
 
-	void DFSUtil(int vertex, boolean nodes[]) {
+		for (int m : arr) 
+		{
 
-		nodes[vertex] = true;
-		System.out.print(vertex + " ");
-		int a = 0;
+			if (m >= l) 
+			{
+				s = l;
+				l = m;
+			}
 
-		for (int i = 0; i < adj[vertex].size(); i++) {
-			a = adj[vertex].get(i);
-			if (!nodes[a]) {
-				DFSUtil(a, nodes);
+			else if (m >= s) 
+			{
+				s = m;
 			}
 		}
+
+		return l - s;
 	}
 
-	void DFS(int v) {
-		boolean already[] = new boolean[V];
-		DFSUtil(v, already);
-	}
+	public static void main(String[] args) 
+	{
 
-	public static void main(String args[]) {
-		Q6 g = new Q6(6);
-
-		g.addEdge(0, 1);
-		g.addEdge(0, 2);
-		g.addEdge(1, 0);
-		g.addEdge(1, 3);
-		g.addEdge(2, 0);
-		g.addEdge(2, 3);
-		g.addEdge(3, 4);
-		g.addEdge(3, 5);
-		g.addEdge(4, 3);
-		g.addEdge(5, 3);
-
-		System.out.println("Following is Depth First Traversal: ");
-
-		g.DFS(0);
+		int[] arr = { 7, 4, 1, 9, 6 };
+		System.out.print(lel(arr));
 	}
 }
