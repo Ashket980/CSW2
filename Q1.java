@@ -31,7 +31,7 @@ public class Q1
 		seg.seg(arr, arr_size);
 
 		System.out.print("Array after segregation is ");
-		for (i = 0; i < arr_le; i++)
+		for (i = 0; i < arr_len; i++)
 			System.out.print(arr[i] + " ");
 	}
 }
